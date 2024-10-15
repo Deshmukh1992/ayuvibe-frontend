@@ -9,7 +9,8 @@ import './plugins/icofont/icofont.min.css';
 import './plugins/slick-carousel/slick/slick.css';
 import './plugins/slick-carousel/slick/slick-theme.css';
 import './css/style.css';
-{/**/}
+import './scss/_common.scss'
+{/*
 
 import './plugins/jquery/jquery.js'
 import './plugins/bootstrap/js/popper.js'
@@ -22,7 +23,7 @@ import './plugins/counterup/jquery.waypoints.min.js'
 import './plugins/shuffle/shuffle.min.js'
 import './plugins/counterup/jquery.counterup.min.js'
 
-    
+    */}
 
 function App() {
   return (
