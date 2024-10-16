@@ -1,19 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import './App.css';
+
 import Header from './components/header';
 import Home from './components/home';
-
 import About from './components/about';
 import Contact from './components/contact';
 import Doctors from './components/doctors';
 import Patient_login from './components/patient_login';
-// import Patient_signup from './components/patient_signup';
-
 import Patient_signup from './components/patient_signup';
 import Doctor_login from './components/doctor_login';
 import Doctor_signup from './components/doctor_signup';
-
 import Patient from './components/patient';
 import Change_password from './components/change_password';
 import Patient_medical_details from './components/patient_medical_details';
@@ -25,8 +21,11 @@ import './plugins/bootstrap/css/bootstrap.min.css';
 import './plugins/icofont/icofont.min.css';
 import './plugins/slick-carousel/slick/slick.css';
 import './plugins/slick-carousel/slick/slick-theme.css';
+import "./plugins/owl.carousel.min.css"
+
 import './css/style.css';
 
+import './css/maps/style.css.map'
 
 
 
