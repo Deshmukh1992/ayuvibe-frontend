@@ -1,4 +1,6 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
 
 
@@ -28,9 +30,9 @@ const Navbar = () => {
 	    </div>
         <nav className="navbar navbar-expand-lg navigation" id="navbar">
             <div className="container">
-                <a className="navbar-brand" href="index.html">
+                <Link className="navbar-brand" to="/">
                     <img src={logo} alt="" className="img-fluid" />
-                </a>
+                </Link>
                 <button className="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain" aria-controls="navbarmain" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="icofont-navigation-menu"></span>
             </button>
@@ -38,16 +40,16 @@ const Navbar = () => {
             <div className="collapse navbar-collapse" id="navbarmain">
                 <ul className="navbar-nav ml-auto">
                 <li className="nav-item active">
-                    <a className="nav-link" href="index.html">Home</a>
+                    <Link className="nav-link" to="/">Home</Link>
                 </li>
-                <li className="nav-item"><a className="nav-link" href="about.html">About</a></li>
+                <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
                 
                     <li className="nav-item ">
-                        <a className="nav-link" href="doctor.html" id="dropdown03">Doctors</a>
+                        <Link className="nav-link" to="/doctors">Doctors</Link>
                     </li>
 
-                <li className="nav-item"><a className="nav-link" href="contact.html">Contact</a></li>
-                <li className="nav-item"><a href="login.html" target="_blank" className="btn btn-main-2 btn-icon btn-round-full nav-link text-white">Login</a></li>
+                <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
+                <li className="nav-item"><Link to="/patient_login" className="btn btn-main-2 btn-icon btn-round-full nav-link text-white">Login</Link></li>
                 </ul>
             </div>
             </div>

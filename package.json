@@ -1,5 +1,10 @@
 {
   "dependencies": {
     "bootstrap": "^5.3.3"
-  }
+  },
+  "scripts": {
+  "start": "NODE_OPTIONS=--openssl-legacy-provider node App.js"
 }
+}
+
+
