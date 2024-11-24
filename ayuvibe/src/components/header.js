@@ -2,9 +2,16 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
+import user_boy from '../images/user_boy.png';
 
 
 const Navbar = () => {
+
+    const userDataString = localStorage.getItem('user');
+    const user = JSON.parse(userDataString);
+
+    console.log(user);
+
   return (
     <div>
         <div className="header-top-bar">
@@ -49,7 +56,7 @@ const Navbar = () => {
                     </li>
 
                 <li className="nav-item"><Link className="nav-link" to="/contact">Contact</Link></li>
-                <li className="nav-item"><Link to="/patient_login" className="btn btn-main-2 btn-icon btn-round-full nav-link text-white">Login</Link></li>
+                <li className="nav-item"><Link to="/login" className="btn btn-main-2 btn-icon btn-round-full nav-link text-white">Login</Link></li>
                 </ul>
             </div>
             </div>

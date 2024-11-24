@@ -1,14 +1,37 @@
-import React from 'react';
-import logo from '../images/logo.png';
+import React, { useEffect, useState } from 'react';
 import img_1 from '../images/about/img-1.jpg';
 import img_2 from '../images/about/img-2.jpg';
 import img_3 from '../images/about/img-3.jpg';
-import test_thumb1 from '../images/team/test-thumb1.jpg';
-import test_thumb2 from '../images/team/test-thumb2.jpg';
-import test_thumb3 from '../images/team/test-thumb3.jpg';
-import test_thumb4 from '../images/team/test-thumb4.jpg';
+import { Link } from 'react-router-dom';
+import {getDoctorData} from '../services/doctors'; 
+
 
 const Home = () => {
+
+    const [doctors, setDoctors] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const result = await getDoctorData();
+            setDoctors(result);
+            setLoading(false);
+
+            console.log(result)
+
+
+          } catch (err) {
+            setError(err);
+            setLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+
   return (
     <div>       
         <section className="banner">
@@ -17,13 +40,13 @@ const Home = () => {
                     <div className="col-lg-6 col-md-12 col-xl-7">
                         <div className="block">
                             <div className="divider mb-3"></div>
-                            <span className="text-uppercase text-sm letter-spacing ">Total Health care solution</span>
-                            <h1 className="mb-3 mt-3">Your most trusted health partner</h1>
+                            <span className="text-uppercase text-sm letter-spacing headline-1">Total Health care solution</span>
+                            <h1 className="mb-3 mt-3 text-white">Your most trusted health partner</h1>
                             
-                            <p className="mb-4 pr-5">A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium quisquam aperiam maiores sunt fugit, deserunt rem suscipit placeat.</p>
-                            <div className="btn-container ">
+                            <p className="mb-4 pr-5 headline-2">Discover the Power of Ayurveda with AyuVibe: Your Path to Natural Wellness. Explore Remedies, Connect with Experts, and Rejuvenate Holistically.</p>
+                            {/* <div className="btn-container ">
                                 <a href="appoinment.html"  className="btn btn-main-2 btn-icon btn-round-full">Make appoinment <i className="icofont-simple-right ml-2  "></i></a>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>
@@ -40,8 +63,8 @@ const Home = () => {
                                 </div>
                                 <span>24 Hours Service</span>
                                 <h4 className="mb-3">Online Appoinment</h4>
-                                <p className="mb-4">Get ALl time support for emergency.We have introduced the principle of family medicine.</p>
-                                <a href="appoinment.html" className="btn btn-main btn-round-full">Make a appoinment</a>
+                                <p className="mb-4">Book online appointments with trusted Ayurvedic doctors through AyuVibe.</p>
+                                <Link to="/login" className="btn btn-main btn-round-full">Make a appoinment</Link>
                             </div>
                         
                             <div className="feature-item mb-5 mb-lg-0">
@@ -63,7 +86,7 @@ const Home = () => {
                                 </div>
                                 <span>Emegency Cases</span>
                                 <h4 className="mb-3">0257 226 4881</h4>
-                                <p>Get ALl time support for emergency.We have introduced the principle of family medicine.Get Conneted with us for any urgency .</p>
+                                <p>Book online appointments with trusted Ayurvedic doctors through AyuVibe. Experience convenient, personalized consultations for your holistic health needs</p>
                             </div>
                         </div>
                     </div>
@@ -87,9 +110,9 @@ const Home = () => {
                     <div className="col-lg-4">
                         <div className="about-content pl-4 mt-4 mt-lg-0">
                             <h2 className="title-color">Personal care <br/>& healthy living</h2>
-                            <p className="mt-4 mb-5">We provide best leading medicle service Nulla perferendis veniam deleniti ipsum officia dolores repellat laudantium obcaecati neque.</p>
+                            <p className="mt-4 mb-5">Enhance your well-being with AyuVibe's Personal Care & Healthy Living services. Explore tailored Ayurvedic routines, natural remedies, and lifestyle tips for a balanced, healthy life.</p>
 
-                            <a href="service.html" className="btn btn-main-2 btn-round-full btn-icon">Services<i className="icofont-simple-right ml-3"></i></a>
+                            <Link to="/login" className="btn btn-main-2 btn-round-full btn-icon">Login<i className="icofont-simple-right ml-3"></i></Link>
                         </div>
                     </div>
                 </div>
@@ -103,14 +126,14 @@ const Home = () => {
                             <div className="counter-stat">
                                 <i className="icofont-doctor"></i>
                                 <span className="h3">58</span>k
-                                <p>Happy People</p>
+                                <p>Happy Individuals on Their Ayurvedic Journey</p>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="counter-stat">
                                 <i className="icofont-flag"></i>
-                                <span className="h3">700</span>+
-                                <p>Surgery Comepleted</p>
+                                <span className="h3">1000</span>+
+                                <p>Ayurvedic Treatments Completed</p>
                             </div>
                         </div>
                         
@@ -118,14 +141,14 @@ const Home = () => {
                             <div className="counter-stat">
                                 <i className="icofont-badge"></i>
                                 <span className="h3">40</span>+
-                                <p>Expert Doctors</p>
+                                <p>Expert Ayurvedic Practitioners</p>
                             </div>
                         </div>
                         <div className="col-lg-3 col-md-6 col-sm-6">
                             <div className="counter-stat">
                                 <i className="icofont-globe"></i>
                                 <span className="h3">20</span>
-                                <p>Worldwide Branch</p>
+                                <p>Global Ayurvedic Wellness Centers</p>
                             </div>
                         </div>
                     </div>
@@ -146,35 +169,21 @@ const Home = () => {
                     <div className="col-lg-6 col-md-10 ">
                         <div className="appoinment-wrap mt-5 mt-lg-0">
                             <h2 className="mb-2 title-color">Book appoinment</h2>
-                            <p className="mb-4">Mollitia dicta commodi est recusandae iste, natus eum asperiores corrupti qui velit . Iste dolorum atque similique praesentium soluta.</p>
+                            <p className="mb-4">Book online appointments with trusted Ayurvedic doctors through AyuVibe. Experience convenient, personalized consultations for your holistic health needs</p>
                                 <form id="#" className="appoinment-form" method="post" action="#">
                             <div className="row">
+                                
+
+                                
                                 <div className="col-lg-6">
                                     <div className="form-group">
-                                        <select className="form-control" id="exampleFormControlSelect1">
-                                        <option>Choose Department</option>
-                                        <option>Software Design</option>
-                                        <option>Development cycle</option>
-                                        <option>Software Development</option>
-                                        <option>Maintenance</option>
-                                        <option>Process Query</option>
-                                        <option>Cost and Duration</option>
-                                        <option>Modal Delivery</option>
-                                        </select>
+                                        <input name="name" id="name" type="text" className="form-control" placeholder="Full Name"/>
                                     </div>
                                 </div>
+
                                 <div className="col-lg-6">
                                     <div className="form-group">
-                                        <select className="form-control" id="exampleFormControlSelect2">
-                                        <option>Select Doctors</option>
-                                        <option>Software Design</option>
-                                        <option>Development cycle</option>
-                                        <option>Software Development</option>
-                                        <option>Maintenance</option>
-                                        <option>Process Query</option>
-                                        <option>Cost and Duration</option>
-                                        <option>Modal Delivery</option>
-                                        </select>
+                                        <input name="phone" id="phone" type="Number" className="form-control" placeholder="Phone Number"/>
                                     </div>
                                 </div>
 
@@ -189,23 +198,38 @@ const Home = () => {
                                         <input name="time" id="time" type="text" className="form-control" placeholder="Time" />
                                     </div>
                                 </div>
-                                <div className="col-lg-6">
-                                    <div className="form-group">
-                                        <input name="name" id="name" type="text" className="form-control" placeholder="Full Name"/>
-                                    </div>
-                                </div>
 
-                                <div className="col-lg-6">
+                                {/* <div className="col-lg-6">
                                     <div className="form-group">
-                                        <input name="phone" id="phone" type="Number" className="form-control" placeholder="Phone Number"/>
+                                        <select className="form-control" id="exampleFormControlSelect1">
+                                        <option>Choose Department</option>
+                                        <option>Software Design</option>
+                                        <option>Development cycle</option>
+                                        <option>Software Development</option>
+                                        <option>Maintenance</option>
+                                        <option>Process Query</option>
+                                        <option>Cost and Duration</option>
+                                        <option>Modal Delivery</option>
+                                        </select>
+                                    </div>
+                                </div> */}
+                                <div className="col-lg-12">
+                                    <div className="form-group">
+                                        <select className="form-control" id="exampleFormControlSelect2">
+                                            <option>Select Doctors</option>
+                                                {doctors.map((doctor) => (
+                                                    <option key={doctor.id} value={doctor.id}>
+                                                    Dr. {doctor.first_name} {doctor.last_name} - {doctor.specialization} 
+                                                    </option>
+                                                ))}
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div className="form-group-2 mb-4">
                                 <textarea name="message" id="message" className="form-control" rows="6" placeholder="Your Message"></textarea>
                             </div>
-
-                            <a className="btn btn-main btn-round-full" href="appoinment.html" >Make Appoinment <i className="icofont-simple-right ml-2  "></i></a>
+                            <Link to="/login" className="btn btn-main btn-round-full" href="appoinment.html" >Make Appoinment <i className="icofont-simple-right ml-2  "></i></Link>
                         </form>
                     </div>
                     </div>
@@ -219,95 +243,13 @@ const Home = () => {
                         <div className="section-title text-center">
                             <h2>We served over 1000+ Patients</h2>
                             <div className="divider mx-auto my-4"></div>
-                            <p>Lets know moreel necessitatibus dolor asperiores illum possimus sint voluptates incidunt molestias nostrum laudantium. Maiores porro cumque quaerat.</p>
+                            <p>Trusted by over 1,000 patients, AyuVibe has empowered individuals on their Ayurvedic health journeys. Join our growing community and experience holistic wellness firsthand.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div className="container">
-                <div className="row align-items-center">
-                    <div className="col-lg-12 testimonial-wrap-2">
-                        <div className="testimonial-block style-2  gray-bg">
-                            <i className="icofont-quote-right"></i>
-
-                            <div className="testimonial-thumb">
-                                <img src={test_thumb1} alt="" className="img-fluid" />
-                            </div>
-
-                            <div className="client-info ">
-                                <h4>Amazing service!</h4>
-                                <span>John Partho</span>
-                                <p>
-                                    They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="testimonial-block style-2  gray-bg">
-                            <div className="testimonial-thumb">
-                                <img src={test_thumb2} alt="" className="img-fluid" />
-                            </div>
-
-                            <div className="client-info">
-                                <h4>Expert doctors!</h4>
-                                <span>Mullar Sarth</span>
-                                <p>
-                                    They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                                </p>
-                            </div>
-                            
-                            <i className="icofont-quote-right"></i>
-                        </div>
-
-                        <div className="testimonial-block style-2  gray-bg">
-                            <div className="testimonial-thumb">
-                                <img src={test_thumb3} alt="" className="img-fluid" />
-                            </div>
-
-                            <div className="client-info">
-                                <h4>Good Support!</h4>
-                                <span>Kolis Mullar</span>
-                                <p>
-                                    They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                                </p>
-                            </div>
-                            
-                            <i className="icofont-quote-right"></i>
-                        </div>
-
-                        <div className="testimonial-block style-2  gray-bg">
-                            <div className="testimonial-thumb">
-                                <img src={test_thumb4} alt="" className="img-fluid" />
-                            </div>
-
-                            <div className="client-info">
-                                <h4>Nice Environment!</h4>
-                                <span>Partho Sarothi</span>
-                                <p className="mt-4">
-                                    They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                                </p>
-                            </div>
-                            <i className="icofont-quote-right"></i>
-                        </div>
-
-                        <div className="testimonial-block style-2  gray-bg">
-                            <div className="testimonial-thumb">
-                                <img src={test_thumb1} alt="" className="img-fluid" />
-                            </div>
-
-                            <div className="client-info">
-                                <h4>Modern Service!</h4>
-                                <span>Kolis Mullar</span>
-                                <p>
-                                    They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat.
-                                </p>
-                            </div>
-                            <i className="icofont-quote-right"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </section>
     </div>
   );

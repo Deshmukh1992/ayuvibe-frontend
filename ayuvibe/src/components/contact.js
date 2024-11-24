@@ -51,7 +51,7 @@ const Contact = () => {
               <div className="section-title text-center">
                 <h2 className="text-md mb-2">Contact us</h2>
                 <div className="divider mx-auto my-4"></div>
-                <p className="mb-5">Laboriosam exercitationem molestias beatae eos pariatur, similique, excepturi mollitia sit perferendis maiores ratione aliquam?</p>
+                <p className="mb-5">Get in touch with us for any inquiries or support related to AyuVibe. We're here to assist you with your Ayurvedic journey!</p>
               </div>
             </div>
           </div>

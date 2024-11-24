@@ -1,11 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
+import { patientSignUp } from '../services/signup';
 
 const Patient_signup = () => {
-  const handleSubmit = (event) => {
+  
+  const navigate = useNavigate ();
+  // Function to handle form submission and send data to the backend API
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Add form submission logic here (e.g., API call)
+
+    // Create an object with the form data
+    const patientData = {
+      first_name: event.target.first_name.value,
+      last_name: event.target.last_name.value,
+      date_of_birth: event.target.date_of_birth.value,
+      gender: event.target.gender.value,
+      phone_number: event.target.phone_number.value,
+      email: event.target.email.value,
+      password: event.target.password.value,
+      address: event.target.address.value,
+      city: event.target.city.value,
+      state: event.target.state.value,
+      postal_code: event.target.postal_code.value,
+    };
+
+    patientSignUp(patientData) // Fetch data by user ID
+      .then(result => {
+        console.log(result); // Logs the doctor data
+        alert(result.message);
+        navigate('/login');
+
+      })
+      .catch(err => { 
+        console.log(err); // Handle and log any error
+      });
+
+    
   };
+
 
   return (
     <div>
@@ -74,9 +106,21 @@ const Patient_signup = () => {
                           <input
                             name="date_of_birth"
                             id="date_of_birth"
-                            type="text"
+                            type="date"
                             className="form-control"
                             placeholder="dd/mm/yyyy"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6">
+                        <div className="form-group">
+                          <input
+                            name="gender"
+                            id="gender"
+                            type="text"
+                            className="form-control"
+                            placeholder="Gender"
                             required
                           />
                         </div>
@@ -89,30 +133,6 @@ const Patient_signup = () => {
                             type="text"
                             className="form-control"
                             placeholder="Phone Number"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6">
-                        <div className="form-group">
-                          <input
-                            name="email"
-                            id="email"
-                            type="email"
-                            className="form-control"
-                            placeholder="Email"
-                            required
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6">
-                        <div className="form-group">
-                          <input
-                            name="password"
-                            id="password"
-                            type="password"
-                            className="form-control"
-                            placeholder="Password"
                             required
                           />
                         </div>
@@ -159,17 +179,46 @@ const Patient_signup = () => {
                         name="address"
                         id="address"
                         className="form-control"
-                        rows="6"
+                        rows="3"
                         placeholder="Your Address"
                         required
                       ></textarea>
                     </div>
 
+                    
+                    <div className="row">
+                      <div className="col-lg-6">
+                        <div className="form-group">
+                          <input
+                            name="email"
+                            id="email"
+                            type="email"
+                            className="form-control"
+                            placeholder="Email"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="col-lg-6">
+                        <div className="form-group">
+                          <input
+                            name="password"
+                            id="password"
+                            type="password"
+                            className="form-control"
+                            placeholder="Password"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    
+
                     <div className="d-flex">
                       <button type="submit" className="btn btn-main btn-round-full">
                         Sign Up <i className="icofont-simple-right ml-2"></i>
                       </button>
-                      <h6 className="mt-4 ml-2">Already Signed Up? <Link to="/patient_login"><u>Login</u></Link></h6>
+                      <h6 className="mt-4 ml-2">Already Signed Up? <Link to="/login"><u>Login</u></Link></h6>
                     </div>
                   </form>
                 </div>

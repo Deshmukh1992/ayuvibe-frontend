@@ -1,11 +1,36 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import img1 from '../images/team/1.jpg';
-import img2 from '../images/team/2.jpg';
-import img3 from '../images/team/3.jpg';
-import img4 from '../images/team/4.jpg';
+import {getDoctorData} from '../services/doctors'; 
+
 
 const Doctors = () => {
+
+    const [doctors, setDoctors] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const result = await getDoctorData();
+            setDoctors(result);
+            setLoading(false);
+
+            console.log(result)
+
+
+          } catch (err) {
+            setError(err);
+            setLoading(false);
+          }
+        };
+    
+        fetchData();
+      }, []);
+
+    //   if (loading) return <div>Loading...</div>;
+    //   if (error) return <div>Error: {error.message}</div>;
+
   return (
     <div>
         <section className="page-title bg-1">
@@ -29,92 +54,83 @@ const Doctors = () => {
                         <div className="section-title">
                             <h2>Doctors</h2>
                             <div className="divider mx-auto my-4"></div>
-                            <p>We provide a wide range of creative services adipisicing elit. Autem maxime rem modi eaque, voluptate. Beatae officiis neque </p>
+                            <p>Explore AyuVibe's directory of certified Ayurvedic doctors for expert guidance on natural health and wellness. Connect with experienced practitioners for personalized care and holistic solutions.</p>
                         </div>
                     </div>
                 </div>
 
-                <div className="col-12 text-center  mb-5">
+                {/* <div className="col-12 text-center  mb-5">
                         <div className="btn-group btn-group-toggle " data-toggle="buttons">
-                        <label className="btn active ">
-                            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Department
-                        </label>
-                        <label className="btn ">
-                            <input type="radio" name="shuffle-filter" value="cat1" />Cardiology
-                        </label>
-                        <label className="btn">
-                            <input type="radio" name="shuffle-filter" value="cat2" />Dental
-                        </label>
-                        <label className="btn">
-                            <input type="radio" name="shuffle-filter" value="cat3" />Neurology
-                        </label>
-                        <label className="btn">
-                            <input type="radio" name="shuffle-filter" value="cat4" />Medicine
-                        </label>
-                        <label className="btn">
-                            <input type="radio" name="shuffle-filter" value="cat5" />Pediatric
-                        </label>
-                        <label className="btn">
-                            <input type="radio" name="shuffle-filter" value="cat6" />Traumatology
-                        </label>
+                            <label className="btn active ">
+                                <input type="radio" name="shuffle-filter" value="all" checked="checked" />All Department
+                            </label>
                         </div>
-                </div>
+                </div> */}
+
+
+                
+
+
                 <div className="row shuffle-wrapper portfolio-gallery">
-                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                    <img src={img1} alt="doctor-image" className="img-fluid w-100" />
+
+                    {doctors.map((doctor, index) => (
+                        <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat1&quot;,&quot;cat2&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                        <img src={img1} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
                                 </div>
+                                <div className="content mt-3 doc-info">
+                                    <h4 className="mb-0"><a href="doctor-single.html">{doctor.first_name} {doctor.last_name}</a></h4>
+                                    <p>{doctor.specialization}</p>
+                                </div> 
                             </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">Thomas Henry</a></h4>
-                                <p>Cardiology</p>
-                            </div> 
                         </div>
+                    ))}
+                    
+
+                    {/* <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat2&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                        <img src={img2} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
+                                </div>
+                                <div className="content mt-3">
+                                    <h4 className="mb-0"><a href="doctor-single.html">Harrision Samuel</a></h4>
+                                    <p>Radiology</p>
+                                </div> 
+                            </div>
                     </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat2&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                    <img src={img2} alt="doctor-image" className="img-fluid w-100" />
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat3&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                        <img src={img3} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
                                 </div>
+                                <div className="content mt-3">
+                                    <h4 className="mb-0"><a href="doctor-single.html">Alexandar James</a></h4>
+                                    <p>Dental</p>
+                                </div> 
                             </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">Harrision Samuel</a></h4>
-                                <p>Radiology</p>
-                            </div> 
-                        </div>
-                </div>
+                    </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat3&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                    <img src={img3} alt="doctor-image" className="img-fluid w-100" />
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat3&quot;,&quot;cat4&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                    <img src={img4} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
                                 </div>
+                                <div className="content mt-3">
+                                    <h4 className="mb-0"><a href="doctor-single.html">Edward john</a></h4>
+                                    <p>Pediatry</p>
+                                </div> 
                             </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">Alexandar James</a></h4>
-                                <p>Dental</p>
-                            </div> 
-                        </div>
-                </div>
-
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat3&quot;,&quot;cat4&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                <img src={img4} alt="doctor-image" className="img-fluid w-100" />
-                                </div>
-                            </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">Edward john</a></h4>
-                                <p>Pediatry</p>
-                            </div> 
-                        </div>
-                </div>
+                    </div>
 
                     <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat5&quot;]">
                         <div className="position-relative doctor-inner-box">
@@ -130,49 +146,49 @@ const Doctors = () => {
                         </div>
                     </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat6&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                <img src={img3} alt="doctor-image" className="img-fluid w-100" />
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat6&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                    <img src={img3} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
                                 </div>
+                                <div className="content mt-3">
+                                    <h4 className="mb-0"><a href="doctor-single.html">Henry samuel</a></h4>
+                                    <p>Palmology</p>
+                                </div> 
                             </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">Henry samuel</a></h4>
-                                <p>Palmology</p>
-                            </div> 
-                        </div>
-                </div>
+                    </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat4&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                <img src={img1} alt="doctor-image" className="img-fluid w-100" />
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat4&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                    <img src={img1} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
                                 </div>
+                                <div className="content mt-3">
+                                    <h4 className="mb-0"><a href="doctor-single.html">Thomas alexandar</a></h4>
+                                    <p>Cardiology</p>
+                                </div> 
                             </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">Thomas alexandar</a></h4>
-                                <p>Cardiology</p>
-                            </div> 
-                        </div>
-                </div>
+                    </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat5&quot;,&quot;cat6&quot;,&quot;cat1&quot;]">
-                        <div className="position-relative doctor-inner-box">
-                            <div className="doctor-profile">
-                                <div className="doctor-img">
-                                <img src={img2} alt="doctor-image" className="img-fluid w-100" />
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item" data-groups="[&quot;cat5&quot;,&quot;cat6&quot;,&quot;cat1&quot;]">
+                            <div className="position-relative doctor-inner-box">
+                                <div className="doctor-profile">
+                                    <div className="doctor-img">
+                                    <img src={img2} alt="doctor-image" className="img-fluid w-100" />
+                                    </div>
                                 </div>
+                                <div className="content mt-3">
+                                    <h4 className="mb-0"><a href="doctor-single.html">HarissonThomas </a></h4>
+                                    <p>Traumatology</p>
+                                </div> 
                             </div>
-                            <div className="content mt-3">
-                                <h4 className="mb-0"><a href="doctor-single.html">HarissonThomas </a></h4>
-                                <p>Traumatology</p>
-                            </div> 
-                        </div>
-                </div>
+                    </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item illustration" data-groups="[&quot;cat2&quot;]">
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item illustration" data-groups="[&quot;cat2&quot;]">
                         <div className="position-relative doctor-inner-box">
                             <div className="doctor-profile">
                                 <div className="doctor-img">
@@ -198,9 +214,9 @@ const Doctors = () => {
                                 <p>hematology</p>
                             </div> 
                         </div>
-                </div>
+                    </div>
 
-                <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item illustration" data-groups="[&quot;cat2&quot;]">
+                    <div className="col-lg-3 col-sm-6 col-md-6 mb-4 shuffle-item illustration" data-groups="[&quot;cat2&quot;]">
                         <div className="position-relative doctor-inner-box">
                             <div className="doctor-profile">
                                 <div className="doctor-img">
@@ -212,7 +228,7 @@ const Doctors = () => {
                                 <p>Dental</p>
                             </div> 
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </section>

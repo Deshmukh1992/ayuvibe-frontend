@@ -12,12 +12,12 @@ const Footer = () => {
 					<div className="logo mb-4">
 						<img src={logo} alt="" className="img-fluid" />
 					</div>
-					<p>Tempora dolorem voluptatum nam vero assumenda voluptate, facilis ad eos obcaecati tenetur veritatis eveniet distinctio possimus.</p>
+					<p>Embrace Wellness Naturally with AyuVibe: Your Ayurvedic Health Companion. Discover expert guidance, remedies, and holistic solutions for a balanced life.</p>
 
 					<ul className="list-inline footer-socials mt-4">
-						<li className="list-inline-item"><a href="https://www.facebook.com/themefisher"><i className="icofont-facebook"></i></a></li>
-						<li className="list-inline-item"><a href="https://twitter.com/themefisher"><i className="icofont-twitter"></i></a></li>
-						<li className="list-inline-item"><a href="https://www.pinterest.com/themefisher/"><i className="icofont-linkedin"></i></a></li>
+						<li className="list-inline-item"><a href="#"><i className="icofont-facebook"></i></a></li>
+						<li className="list-inline-item"><a href="#"><i className="icofont-twitter"></i></a></li>
+						<li className="list-inline-item"><a href="#"><i className="icofont-linkedin"></i></a></li>
 					</ul>
 				</div>
 			</div>
@@ -69,13 +69,13 @@ const Footer = () => {
 					</div>
 				</div>
 			</div>
-			<div className="row">
+			{/* <div className="row">
 				<div className="col-lg-4">
 					<a className="backtop js-scroll-trigger" href="#top">
 						<i className="icofont-long-arrow-up"></i>
 					</a>
 				</div>
-			</div>
+			</div> */}
 		</div>
 	</div>
 </footer>

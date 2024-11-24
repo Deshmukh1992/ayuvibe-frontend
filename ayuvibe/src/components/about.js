@@ -23,68 +23,14 @@ const About = () => {
                 <div className="row">
                     <div className="col-lg-6 offset-lg-6">
                         <div className="section-title">
-                            <h2 className="mb-4">What they say about us</h2>
+                            <h2 className="mb-4">What we say about us</h2>
                             <div className="divider  my-4"></div>
                         </div>
                     </div>
                 </div>
                 <div className="row align-items-center">
                     <div className="col-lg-6 testimonial-wrap offset-lg-6">
-                        <div className="testimonial-block">
-                            <div className="client-info ">
-                                <h4>Amazing service!</h4>
-                                <span>John Partho</span>
-                            </div>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-                            </p>
-                            <i className="icofont-quote-right"></i>
-                            
-                        </div>
-
-                        <div className="testimonial-block">
-                            <div className="client-info">
-                                <h4>Expert doctors!</h4>
-                                <span>Mullar Sarth</span>
-                            </div>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-                            </p>
-                            <i className="icofont-quote-right"></i>
-                        </div>
-
-                        <div className="testimonial-block">
-                            <div className="client-info">
-                                <h4>Good Support!</h4>
-                                <span>Kolis Mullar</span>
-                            </div>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-                            </p>
-                            <i className="icofont-quote-right"></i>
-                        </div>
-
-                        <div className="testimonial-block">
-                            <div className="client-info">
-                                <h4>Nice Environment!</h4>
-                                <span>Partho Sarothi</span>
-                            </div>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-                            </p>
-                            <i className="icofont-quote-right"></i>
-                        </div>
-
-                        <div className="testimonial-block">
-                            <div className="client-info">
-                                <h4>Modern Service!</h4>
-                                <span>Kolis Mullar</span>
-                            </div>
-                            <p>
-                                They provide great service facilty consectetur adipisicing elit. Itaque rem, praesentium, iure, ipsum magnam deleniti a vel eos adipisci suscipit fugit placeat. Quibusdam laboriosam eveniet nostrum nemo commodi numquam quod.
-                            </p>
-                            <i className="icofont-quote-right"></i>
-                        </div>
+                    AyuVibe is dedicated to bringing the ancient wisdom of Ayurveda into the modern world. Our mission is to provide holistic health solutions through personalized Ayurvedic treatments, remedies, and expert consultations. With a comprehensive database of natural herbs and a network of certified Ayurvedic doctors, we empower individuals to embrace a balanced lifestyle rooted in wellness. Whether you're seeking preventative care or natural remedies, AyuVibe is your trusted partner on the journey to holistic health.
                     </div>
                 </div>
             </div>

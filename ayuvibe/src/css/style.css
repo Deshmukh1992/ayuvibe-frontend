@@ -17,8 +17,12 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
-  color: #6F8BA4;
+  color: #060606;
   font-weight: 400;
+}
+
+.headline-1, .headline-2{
+  color: #ffffff;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -758,7 +762,11 @@ a:focus {
 }
 
 .doctor-inner-box {
+  border: 1px solid #e2e8f0;
   overflow: hidden;
+  box-shadow: 0px 6px 12px 10px rgba(0, 0, 0, 0.0784313725);
+  border-radius: 10px;
+
 }
 
 .doctor-inner-box .doctor-profile {
@@ -1696,6 +1704,13 @@ a:focus {
   border-radius: 4px;
 }
 
+.booking-doc-img-header img{
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 .profile-info-widget .booking-doc-img::after {
   content: url(../images/badge-check.svg);
   width: auto;
@@ -1711,12 +1726,12 @@ a:focus {
   line-height: 0;
   border-radius: 50%;
 }
-.appointment-wrap {
+/* .appointment-wrap {
   box-shadow: 0 7.5px 17.5px 0 rgba(0, 0, 0, .0509803922);
   margin: 0 0 15px;
   padding: 24px 24px 10px;
   border-radius: 10px;
-}
+} */
 .appointment-wrap>ul {
   display: flex;
   display: -webkit-flex;
@@ -1817,7 +1832,120 @@ a:focus {
   box-shadow: 0 7.5px 17.5px 0 rgba(0, 0, 0, .0509803922);
   border-radius: 10px;
   margin-bottom: 24px;
+  
 }
+
+.appointment-box{
+  height: 590px;
+  overflow-y: auto;
+}
+
+/* Style the scrollbar track */
+.appointment-box::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar (if needed) */
+  opacity: 0; /* Initially hide the scrollbar */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+.appointment-box::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+  border-radius: 10px; /* Round the corners */
+  border: 2px solid #f1f1f1; /* Border around the thumb */
+}
+
+/* Style when the scrollbar thumb is hovered */
+.appointment-box::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when hovered */
+}
+
+/* Show the scrollbar when the container is hovered */
+.appointment-box:hover::-webkit-scrollbar {
+  opacity: 1; /* Show the scrollbar on hover */
+}
+
+/* Optional: Style the scrollbar track */
+.appointment-box::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
+.next-appointment-box{
+  height: 150px;
+  overflow-y: auto;
+}
+
+/* Style the scrollbar track */
+.next-appointment-box::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar (if needed) */
+  opacity: 0; /* Initially hide the scrollbar */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+.next-appointment-box::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+  border-radius: 10px; /* Round the corners */
+  border: 2px solid #f1f1f1; /* Border around the thumb */
+}
+
+/* Style when the scrollbar thumb is hovered */
+.next-appointment-box::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when hovered */
+}
+
+/* Show the scrollbar when the container is hovered */
+.next-appointment-box:hover::-webkit-scrollbar {
+  opacity: 1; /* Show the scrollbar on hover */
+}
+
+/* Optional: Style the scrollbar track */
+.next-appointment-box::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
+.dr-appointment-box{
+  height: 725px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+
+/* Style the scrollbar track */
+.dr-appointment-box::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar (if needed) */
+  opacity: 0; /* Initially hide the scrollbar */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+.dr-appointment-box::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+  border-radius: 10px; /* Round the corners */
+  border: 2px solid #f1f1f1; /* Border around the thumb */
+}
+
+/* Style when the scrollbar thumb is hovered */
+.dr-appointment-box::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when hovered */
+}
+
+/* Show the scrollbar when the container is hovered */
+.dr-appointment-box:hover::-webkit-scrollbar {
+  opacity: 1; /* Show the scrollbar on hover */
+}
+
+/* Optional: Style the scrollbar track */
+.dr-appointment-box::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
 .w-100 {
   width: 100% !important;
 }
@@ -2107,4 +2235,336 @@ a:focus {
   font-size: 20px;
   color: #ffffff;
   margin-bottom: 0;
+}
+
+.appointment-actions {
+  margin-left: 100px;
+}
+
+.appointment-list {
+  margin-bottom: 25px;
+  /* margin-left: 20px; */
+}
+
+.doc-info {
+  text-align: center;
+}
+
+.profile-sidebar.profile-sidebar-new .widget-profile .profile-det-info .doctor-role-badge {
+  border: 1px solid #e2e8f0;
+  color: #334155;
+  font-size: 14px;
+  margin-top: 15px;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+}
+.doctor-available-head {
+  background: #f8fafc;
+  padding: 24px;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  color: #272b41;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 44px;
+}
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  padding-right: 30px;
+  padding-left: 15px;
+}
+.form-control {
+  border-color: #e2e8f0;
+  color: #333;
+  font-size: 15px;
+  min-height: 46px;
+  padding: 11px 15px;
+}
+.dashboard-widget-box {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  width: 100%;
+  box-shadow: 0 7.5px 17.5px 0 rgba(0, 0, 0, .0509803922);
+}
+.dashboard-widget-box .dashboard-content-info h6 {
+  color: #334155;
+  font-size: 16px;
+  font-weight: 400;
+}
+.dashboard-widget-box .dashboard-content-info h4 {
+  color: #0f172a;
+  font-weight: 600;
+  margin: 5px 0;
+  font-size: 24px;
+}
+.dashboard-widget-box .dashboard-content-info span {
+  font-size: 12px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.text-success {
+  color: #00cc52 !important;
+}
+
+
+.home-app {
+  overflow-y: auto;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+  height: 466px;
+  width: 550px;
+  box-sizing: border-box; /* Include padding and border within width */
+}
+
+/* Style the scrollbar track */
+.home-app::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+  height: 8px; /* Height of the horizontal scrollbar (if needed) */
+  opacity: 0; /* Initially hide the scrollbar */
+  transition: opacity 0.3s ease; /* Smooth transition for opacity */
+}
+
+/* Style the scrollbar thumb (the draggable part) */
+.home-app::-webkit-scrollbar-thumb {
+  background-color: #888; /* Scrollbar color */
+  border-radius: 10px; /* Round the corners */
+  border: 2px solid #f1f1f1; /* Border around the thumb */
+}
+
+/* Style when the scrollbar thumb is hovered */
+.home-app::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker color when hovered */
+}
+
+/* Show the scrollbar when the container is hovered */
+.home-app:hover::-webkit-scrollbar {
+  opacity: 1; /* Show the scrollbar on hover */
+}
+
+/* Optional: Style the scrollbar track */
+.home-app::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Track color */
+  border-radius: 10px;
+}
+
+.dashboard-widget-box .dash-icon-box {
+  width: 75px;
+  height: 75px;
+  border-radius: 10px;
+  background: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+}
+.text-danger {
+  color: #ff0100 !important;
+}
+.dashboard-card {
+  border: 1px solid #e2e8f0;
+  padding: 24px;
+  box-shadow: 0 7.5px 17.5px 0 rgba(0, 0, 0, .0509803922);
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.dashboard-card .dashboard-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    row-gap: 15px;
+}
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.dashboard-table.table {
+  --bs-table-bg: transparent;
+}
+table.table {
+  color: #272b41;
+  max-width: 100%;
+  margin-bottom: 0;
+  width: 100%;
+}
+.table>tbody {
+  vertical-align: inherit;
+}
+.dashboard-table.table tbody tr {
+  border: 0;
+  border-radius: 10px;
+}
+.dashboard-table.table tbody tr td:first-child {
+  border-radius: 10px 0 0 10px;
+}
+.dashboard-table.table tbody tr td {
+  padding: 10px;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.table>:not(caption)>*>* {
+  padding: .5rem .5rem;
+  color: var(--bs-table-color-state, var(--bs-table-color-type, var(--bs-table-color)));
+  background-color: var(--bs-table-bg);
+  border-bottom-width: var(--bs-border-width);
+  box-shadow: inset 0 0 0 9999px var(--bs-table-bg-state, var(--bs-table-bg-type, var(--bs-table-accent-bg)));
+}
+
+.dashboard-table.table .patient-info-profile {
+  display: flex;
+  align-items: center;
+}
+.dashboard-table.table .table-avatar {
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+.dashboard-table.table .patient-name-info span {
+  color: #1d7ed8;
+  font-size: 12px;
+  font-weight: 500;
+}
+.dashboard-table.table .patient-name-info h5 {
+  font-size: 16px;
+  margin-bottom: 0;
+}
+.dashboard-table.table.appoint-table .appointment-date-created h6 {
+  font-size: 14px;
+}
+.dashboard-table.table .appointment-date-created .table-badge {
+  background: #14b8a6;
+  font-weight: 500;
+  font-size: 10px;
+  margin-top: 5px;
+}
+.align-items-center {
+  align-items: center !important;
+}
+.d-flex {
+  display: flex !important;
+}
+.dashboard-table.table .apponiment-actions a.text-success-icon {
+  border-color: #1ca345;
+  color: #1ca345;
+}
+
+.dashboard-table.table .apponiment-actions a {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 12px;
+}
+.me-2 {
+  margin-right: .5rem !important;
+}
+.dashboard-table.table .apponiment-actions a.text-danger-icon {
+  border-color: #de3f44;
+  color: #de3f44;
+}
+
+.dashboard-table.table .apponiment-actions a {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  border-radius: 50%;
+  font-size: 12px;
+}
+.dashboard-table.table .table-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+
+.modern-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+.table-header {
+  background-color: #147a90; /* Primary color */
+  color: white;
+  text-align: left;
+  padding: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  position: relative;
+}
+
+.table-header .filter {
+  margin-top: 8px;
+}
+
+.table-row:hover {
+  background-color: rgba(76, 175, 80, 0.1); /* Light hover effect */
+}
+
+.table-cell {
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #ffffff; /* White background for cells */
+}
+
+.table-cell:nth-child(even) {
+  background-color: #f9f9f9; /* Zebra striping for even rows */
+}
+
+.table-cell:nth-child(odd) {
+  background-color: #ffffff; /* White background for odd rows */
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Aligns pagination controls to the right */
+  margin-top: 10px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #147a90; /* Primary color */
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination select {
+  margin-left: 10px;
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
