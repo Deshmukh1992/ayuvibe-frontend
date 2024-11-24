@@ -121,6 +121,5 @@ This project is licensed under the [MIT License](LICENSE).
 For any queries or feedback, please feel free to reach out:
 
 - **Author**: [Deshmukh1992](https://github.com/Deshmukh1992)
-- **Email**: [Add your email here]
 
 ---
