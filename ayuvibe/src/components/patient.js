@@ -7,10 +7,8 @@ import { useLocation } from 'react-router-dom';
 import {getPatientById} from '../services/patient';
 import {getDoctorData} from '../services/doctors';
 import { getPatientAppointmetById } from '../services/patient';
+import { getHealthInfoById } from '../services/patient';
 import { createAppointment } from '../services/patient';
-import { toast } from 'react-toastify';
-import { ToastContainer } from 'react-toastify'; // Import ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Import Toast styles
 
 
 const Patient = () => {
@@ -41,6 +39,8 @@ const Patient = () => {
   const [selectedHour, setSelectedHour] = useState(1);
   const [selectedMinute, setSelectedMinute] = useState(0);
   const [message, setMessage] = useState('');
+
+  const [healthInfo, setHealthInfo] = useState(null);
 
   // Handle change for doctor select
   const handleDoctorChange = (e) => {
@@ -114,6 +114,16 @@ const Patient = () => {
         console.log(err); // Handle and log any error
       });
 
+    getHealthInfoById(user.user_id) // Fetch data by user ID
+      .then(result => {
+        console.log(result); // Logs the patient data
+        setHealthInfo(result);  // Set the fetched data in state
+
+      })
+      .catch(err => { 
+        console.log(err); // Handle and log any error
+      });
+
     getDoctorData()
       .then(result => {
         console.log(result);
@@ -148,6 +158,33 @@ const Patient = () => {
       .catch(err => { 
         console.log(err); // Handle and log any error
       });
+
+    
+
+    getHealthInfoById(user.user_id) // Fetch data by user ID
+      .then(result => {
+        console.log("HealthInfo -> ", result);
+        
+      })
+      .catch(err => { 
+        console.log(err); // Handle and log any error
+    });
+
+    
+    
+
+    // getTreatmentByAppointmetId(appointmentId)
+    //   .then(result => {
+    //     console.log(result);  // Logs the fetched appointment details
+    //     setTreatmentDetails(result);  // Store fetched details in state
+    //     localStorage.setItem('treatmentDetails', JSON.stringify(result)); // Store in localStorage
+
+    //     setAppointmentDoctor(myDoctor);
+
+    //   })
+    //   .catch(err => {
+    //     console.log(err);  // Handle any errors
+    //   });
   };
 
   const handleLogout = () => {
@@ -268,44 +305,79 @@ const Patient = () => {
                               <div className="col-lg-6">
                                 <div className="health-records icon-orange">
                                   <span><i className="fa-solid icofont-heart"></i>Heart Rate</span>
-                                  <h3>140 Bpm <sup>2%</sup></h3>
+                                  {healthInfo ? (
+                                  <>
+                                    <h3>{ healthInfo.heart_rate } Bpm</h3>
+                                  </>) : (
+                                    <h3>0 Bpm</h3>
+                                  )}
                                 </div>
                               </div>
                               <div className="col-lg-6">
                                 <div className="health-records icon-amber">
                                   <span><i className="fa-solid icofont-hour-glass"></i>Body Temperature</span>
-                                  <h3>37.5 C</h3>
+                                  {healthInfo ? (
+                                  <>
+                                    <h3>{ healthInfo.body_temp } C</h3>
+                                  </>) : (
+                                    <h3>0 C</h3>
+                                  )}
+                                  
                                 </div>
                               </div>
                               <div className="col-lg-6">
                                 <div className="health-records icon-dark-blue">
                                   <span><i className="fa-solid icofont-medical-sign"></i>Glucose Level</span>
-                                  <h3>70 - 90 <sup>6%</sup></h3>
+                                  {healthInfo ? (
+                                  <>
+                                    <h3>{ healthInfo.glucose_level }</h3>
+                                  </>) : (
+                                    <h3>0</h3>
+                                  )}
+                                  
                                 </div>
                               </div>
                               <div className="col-lg-6">
                                 <div className="health-records icon-blue">
                                   <span><i className="fa-solid icofont-ui-flash-light"></i>SPo2</span>
-                                  <h3>96%</h3>
+                                  {healthInfo ? (
+                                  <>
+                                    <h3>{ healthInfo.oxigen_level }</h3>
+                                  </>) : (
+                                    <h3>0%</h3>
+                                  )}
+                                  
                                 </div>
                               </div>
                               <div className="col-lg-6">
                                 <div className="health-records icon-red">
                                   <span><i className="fa-solid icofont-injection-syringe"></i>Blood Pressure</span>
-                                  <h3>100 mg/dl <sup>2%</sup></h3>
+                                  {healthInfo ? (
+                                  <>
+                                    <h3>{ healthInfo.blood_pressure } mg/dl</h3>
+                                  </>) : (
+                                    <h3>0 mg/dl</h3>
+                                  )}
+                                  
                                 </div>
                               </div>
                               <div className="col-lg-6">
                                 <div className="health-records icon-purple">
                                   <span><i className="fa-solid icofont-ui-user"></i>BMI</span>
-                                  <h3>20.1 kg/m<sup>2</sup></h3>
+                                  {healthInfo ? (
+                                  <>
+                                    <h3>{ healthInfo.bmi } kg/m</h3>
+                                  </>) : (
+                                    <h3>0 kg/m<sup>2</sup></h3>
+                                  )}
+                                  
                                 </div>
                               </div>
-                              <div className="col-md-12">
+                              {/* <div className="col-md-12">
                                 <div className="report-gen-date">
                                   <p>Report generated on last visit: 25 Mar 2024 <span><i className="fa-solid icofont-copy"></i></span></p>
                                 </div>
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </div>

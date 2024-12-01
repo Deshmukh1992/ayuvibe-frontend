@@ -5,9 +5,13 @@ import user_boy from '../images/user_boy.png';
 import profile_06 from '../images/profile-06.jpg';
 import doctor_profile_img from '../images/team/1.jpg';
 import { useLocation } from 'react-router-dom';
-import { getDoctorById } from '../services/doctors';
-import { getDoctorAppointmetById } from '../services/doctors';
-import { createDiagnoses, createTreatment } from '../services/doctors';
+import {getDoctorById, getDoctorAppointmetById, 
+        createDiagnoses, createTreatment, getDiagnoses, 
+        updateDiagnoses, updateTreatment } from '../services/doctors';
+
+
+import { getHealthInfoById, createHealthInfo, updateHealthInfo } from '../services/patient';
+
 
 const DoctorAppointments = () => {
   const location = useLocation(); // useLocation hook to access route state
@@ -15,7 +19,7 @@ const DoctorAppointments = () => {
   const userDataString = localStorage.getItem('user');
   const user = JSON.parse(userDataString);
 
-  console.log(user);
+  // console.log(user);
 
   const [doctor, setdoctor] = useState(null); // Initialize state for doctor data
 
@@ -29,7 +33,17 @@ const DoctorAppointments = () => {
   const [dose, setDose] = useState('');
   const [duration, setDuration] = useState('');
 
+  const [heart_rate, setHeartRate] = useState('');
+  const [Body_temperature, setBodyTemperature] = useState('');
+  const [glucose_level, setGlucoseLevel] = useState('');
+  const [oxigen_level, setOxigenLevel] = useState('');
+  const [blood_pressure, setBloodPressure] = useState('');
+  const [bmi, setBmi] = useState('');
+
   const [appointmentId, setAppointmentId] = useState('');
+  const [patientId, setPatientId] = useState('');
+
+  const [diagnosisFilterData, setDianosisAllData] = useState([]);
 
   const fetchData = () => {
     getDoctorById(user.user_id) // Fetch data by user ID
@@ -55,6 +69,11 @@ const DoctorAppointments = () => {
       });
   };
 
+  const setPaitentData = (AppointmentId, PatientId) => {
+    setAppointmentId(AppointmentId)
+    setPatientId(PatientId)
+  }
+
   // Fetch data when the component mounts
   useEffect(() => {
     fetchData();
@@ -62,11 +81,56 @@ const DoctorAppointments = () => {
 
   const handleSubmit = async () => {
     try {
-      // First, create the diagnosis
-      const diagnosisData = await createDiagnoses(appointmentId, diagnosis);
+
+      let HealthInfo = await getHealthInfoById(patientId);
+
+      let HealthInfoResult = []
+
+      if (HealthInfo.length != 0){
+        HealthInfoResult = HealthInfo.filter(
+          (item) => item.patient_id === parseInt(patientId)
+        )
+      }
+
+      console.log(HealthInfoResult);
+
+      if (HealthInfoResult.length === 0){
+          const HealthInfoCreateRes = await createHealthInfo(patientId, heart_rate, Body_temperature, glucose_level,
+            oxigen_level, blood_pressure, bmi)
+      }
+      else{
+        await updateHealthInfo(patientId, heart_rate, Body_temperature, glucose_level,
+          oxigen_level, blood_pressure, bmi)
+      }
+
+
+      const diagnosisAllData = await getDiagnoses();
+
+      const result = diagnosisAllData.filter(
+        (item) => item.appointment_id === parseInt(appointmentId))
+
+      console.log(result);
       
-      // Once the diagnosis is created, create the treatment
-      await createTreatment(diagnosisData.diagnosis_id, medications, dose, duration);
+      if (result.length === 0){
+        // First, create the diagnosis
+        const diagnosisData = await createDiagnoses(appointmentId, diagnosis, heart_rate, Body_temperature, glucose_level,
+          oxigen_level, blood_pressure, bmi
+        );
+
+        // Once the diagnosis is created, create the treatment
+        await createTreatment(diagnosisData.diagnosis_id, medications, dose, duration);
+      }
+      else{
+        // Update the diagnosis
+        const updateddiagnosisData = await updateDiagnoses(appointmentId, diagnosis, heart_rate, Body_temperature, glucose_level,
+          oxigen_level, blood_pressure, bmi
+        );
+
+        // Once the diagnosis is created, create the treatment
+        await updateTreatment(updateddiagnosisData.diagnosis_id, medications, dose, duration);
+      }
+
+      
 
       // Optionally, show a success message or perform further actions
       alert('Diagnosis and treatment saved successfully!');
@@ -209,7 +273,7 @@ const DoctorAppointments = () => {
                                     className="btn btn-primary" 
                                     data-toggle="modal" 
                                     data-target="#diagnoseModal"
-                                    onClick={() => setAppointmentId(appointment.appointment_id)} // Wrap the setAppointmentId function
+                                    onClick={() => setPaitentData(appointment.appointment_id, appointment.patient.patient_id)} // Wrap the setAppointmentId function
                                   >
                                     Diagnose & Prescribe
                                   </button>
@@ -238,6 +302,52 @@ const DoctorAppointments = () => {
                     </div>
                     <div className="modal-body">
                       <form>
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <div className="form-group">
+                            <label htmlFor="date">Heart Rate</label>
+                            <input type="text" className="form-control" id="text" onChange={(e) => setHeartRate(e.target.value)}  />
+                          </div>
+                        </div>
+                        <div className="col-lg-4">
+                          <div className="form-group">
+                            <label htmlFor="text">Body Temperature</label>
+                            <input type="text" className="form-control" id="text" onChange={(e) => setBodyTemperature(e.target.value)}  />
+                          </div>
+                        </div>
+                        <div className="col-lg-4">
+                          <div className="form-group">
+                            <label htmlFor="text">Glucose Level</label>
+                            <input type="text" className="form-control" id="text" onChange={(e) => setGlucoseLevel(e.target.value)}  />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="row">
+                        <div className="col-lg-4">
+                          <div className="form-group">
+                            <label htmlFor="date">Oxygen Level</label>
+                            <input type="text" className="form-control" id="text" onChange={(e) => setOxigenLevel(e.target.value)}  />
+                          </div>
+                        </div>
+                        <div className="col-lg-4">
+                          <div className="form-group">
+                            <label htmlFor="text">Blood Pressure</label>
+                            <input type="text" className="form-control" id="text" onChange={(e) => setBloodPressure(e.target.value)}  />
+                          </div>
+                        </div>
+                        <div className="col-lg-4">
+                          <div className="form-group">
+                            <label htmlFor="text">BMI</label>
+                            <input type="text" className="form-control" id="text" onChange={(e) => setBmi(e.target.value)}  />
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div className="form-group">
+                        
+                        </div>
                         <div className="form-group">
                           <label>Patient Symptoms</label>
                           <textarea 
